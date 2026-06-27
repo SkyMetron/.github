@@ -1,52 +1,159 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0a0a1a"/>
-      <stop offset="100%" stop-color="#1a0a2e"/>
+    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#252a30"/>
+      <stop offset="45%" stop-color="#161a20"/>
+      <stop offset="100%" stop-color="#0a0c10"/>
+    </radialGradient>
+
+    <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4f86" stop-opacity="1"/>
+      <stop offset="35%" stop-color="#ff254f" stop-opacity="0.95"/>
+      <stop offset="68%" stop-color="#a80d28" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d0d4d8"/>
+      <stop offset="16%" stop-color="#5e646b"/>
+      <stop offset="40%" stop-color="#1d2228"/>
+      <stop offset="60%" stop-color="#7f8790"/>
+      <stop offset="100%" stop-color="#11151a"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#818cf8"/>
+
+    <linearGradient id="metal2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#aeb4ba"/>
+      <stop offset="100%" stop-color="#30343a"/>
     </linearGradient>
-    <linearGradient id="accent2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#818cf8"/>
-      <stop offset="100%" stop-color="#a78bfa"/>
+
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff6b8f"/>
+      <stop offset="50%" stop-color="#ff184f"/>
+      <stop offset="100%" stop-color="#ff6b8f"/>
     </linearGradient>
+
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <clipPath id="round">
+      <rect width="1024" height="1024" rx="72"/>
+    </clipPath>
   </defs>
 
-  <!-- Background -->
-  <rect width="400" height="400" rx="48" fill="url(#bg)"/>
+  <g clip-path="url(#round)">
+    <rect width="1024" height="1024" fill="url(#bg)"/>
 
-  <!-- Constellation dots -->
-  <circle cx="92" cy="88" r="5" fill="url(#accent)" opacity="0.8"/>
-  <circle cx="200" cy="60" r="5" fill="url(#accent2)" opacity="0.6"/>
-  <circle cx="308" cy="88" r="5" fill="url(#accent)" opacity="0.8"/>
-  <circle cx="320" cy="180" r="4" fill="url(#accent2)" opacity="0.5"/>
-  <circle cx="80" cy="180" r="4" fill="url(#accent2)" opacity="0.5"/>
-  <circle cx="200" cy="340" r="6" fill="url(#accent2)" opacity="0.9"/>
+    <!-- scratched backdrop -->
+    <g opacity="0.18" stroke="#c5c9cf" stroke-linecap="round">
+      <path d="M78 114C126 98 152 88 198 44" stroke-width="2"/>
+      <path d="M212 82C258 52 328 32 394 16" stroke-width="1.5"/>
+      <path d="M694 40C760 68 818 122 880 176" stroke-width="1.4"/>
+      <path d="M124 202C176 168 210 164 268 130" stroke-width="1.2"/>
+      <path d="M804 194C860 176 916 146 972 112" stroke-width="1.2"/>
+      <path d="M58 834C104 784 138 744 172 688" stroke-width="1.4"/>
+      <path d="M814 824C862 776 900 738 956 676" stroke-width="1.4"/>
+    </g>
 
-  <!-- Constellation lines -->
-  <line x1="92" y1="88" x2="200" y2="60" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
-  <line x1="200" y1="60" x2="308" y2="88" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
-  <line x1="308" y1="88" x2="320" y2="180" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
-  <line x1="92" y1="88" x2="80" y2="180" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
-  <line x1="80" y1="180" x2="92" y2="88" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
-  <line x1="200" y1="60" x2="200" y2="340" stroke="url(#accent)" stroke-width="1" opacity="0.15"/>
+    <!-- outer industrial frame -->
+    <g transform="translate(512 512)">
+      <circle r="368" fill="#101318" stroke="#3a4047" stroke-width="22"/>
+      <circle r="350" fill="none" stroke="url(#metal)" stroke-width="14" opacity="0.9"/>
+      <circle r="316" fill="#11151a" stroke="#555b62" stroke-width="10"/>
+      <circle r="278" fill="#0e1116" stroke="#2a2f36" stroke-width="8"/>
 
-  <!-- Central stylized "M" (SkyMetron) -->
-  <path d="M120 260 L160 160 L200 220 L240 160 L280 260"
-        stroke="url(#accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- top plates -->
+      <g>
+        <path d="M-210 -334h420l-24 78h-372z" fill="url(#metal2)" stroke="#0b0d10" stroke-width="8"/>
+        <path d="M-160 -333h320" stroke="#dfe5eb" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
+        <circle cx="-126" cy="-272" r="12" fill="#20242a" stroke="#70757d" stroke-width="5"/>
+        <circle cx="126" cy="-272" r="12" fill="#20242a" stroke="#70757d" stroke-width="5"/>
+        <path d="M-14 -255l14 -24 14 24z" fill="#ff4f86" filter="url(#glow)"/>
+      </g>
 
-  <!-- Neural circuit dots along M -->
-  <circle cx="160" cy="160" r="7" fill="url(#accent)" opacity="0.9"/>
-  <circle cx="200" cy="220" r="7" fill="url(#accent2)" opacity="0.9"/>
-  <circle cx="240" cy="160" r="7" fill="url(#accent)" opacity="0.9"/>
+      <!-- red light rails -->
+      <g filter="url(#glow)">
+        <path d="M-288 -120A300 300 0 0 1 -230 -252" stroke="url(#neon)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M288 -120A300 300 0 0 0 230 -252" stroke="url(#neon)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M-320 54A320 320 0 0 0 -320 188" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+        <path d="M320 54A320 320 0 0 1 320 188" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+      </g>
 
-  <!-- Orbital rings -->
-  <ellipse cx="200" cy="200" rx="140" ry="40" stroke="url(#accent)" stroke-width="0.5" opacity="0.15" transform="rotate(-15 200 200)"/>
-  <ellipse cx="200" cy="200" rx="100" ry="28" stroke="url(#accent2)" stroke-width="0.5" opacity="0.1" transform="rotate(20 200 200)"/>
+      <!-- side modules -->
+      <g opacity="0.95">
+        <g transform="translate(-286 16)">
+          <rect x="-8" y="-56" width="16" height="112" rx="8" fill="#262b31" stroke="#737a82" stroke-width="3"/>
+          <rect x="-2" y="-42" width="4" height="84" fill="#ff2b5c" filter="url(#glow)"/>
+        </g>
+        <g transform="translate(286 16)">
+          <rect x="-8" y="-56" width="16" height="112" rx="8" fill="#262b31" stroke="#737a82" stroke-width="3"/>
+          <rect x="-2" y="-42" width="4" height="84" fill="#ff2b5c" filter="url(#glow)"/>
+        </g>
+      </g>
 
-  <!-- Small orbital nodes -->
-  <circle cx="72" cy="146" r="3" fill="url(#accent)" opacity="0.4"/>
-  <circle cx="328" cy="254" r="3" fill="url(#accent2)" opacity="0.4"/>
+      <!-- inner mech ring -->
+      <circle r="220" fill="#0c0f13" stroke="#3f454c" stroke-width="10"/>
+      <circle r="208" fill="#090c10" stroke="#5b626b" stroke-width="4"/>
+
+      <g fill="#20252b" stroke="#6a7178" stroke-width="4">
+        <path d="M0 -228l18 52h-36z"/>
+        <path d="M0 228l18 -52h-36z"/>
+        <path d="M228 0l-52 18v-36z"/>
+        <path d="M-228 0l52 18v-36z"/>
+      </g>
+
+      <!-- aperture blades -->
+      <g>
+        <g fill="#171b20" stroke="#5e646b" stroke-width="5">
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(0)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(36)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(72)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(108)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(144)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(180)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(216)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(252)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(288)"/>
+          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(324)"/>
+        </g>
+
+        <g filter="url(#glow)">
+          <path d="M-4 -170C-2 -198 8 -220 28 -236" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M128 -108C160 -92 186 -64 202 -28" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M126 108C156 92 182 64 200 28" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M-124 108C-154 92 -182 62 -200 26" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M-126 -108C-156 -92 -182 -62 -202 -28" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+        </g>
+      </g>
+
+      <!-- center iris -->
+      <circle r="80" fill="#050608" stroke="#ff4f86" stroke-width="8" filter="url(#glow)"/>
+      <circle r="54" fill="url(#coreGlow)" filter="url(#glow)"/>
+      <circle r="32" fill="#a90b26" opacity="0.35"/>
+      <circle r="20" fill="#010101"/>
+
+      <!-- lower label plate -->
+      <g transform="translate(0 268)">
+        <path d="M-240 -28h480l-22 96h-436z" fill="#0d1014" stroke="#414850" stroke-width="8"/>
+        <path d="M-200 -2h400" stroke="#70777f" stroke-width="4" opacity="0.3"/>
+        <path d="M-188 18h376" stroke="#70777f" stroke-width="2" opacity="0.15"/>
+        <text x="0" y="42" text-anchor="middle"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="58" font-weight="800" letter-spacing="2"
+              fill="#ff597f" filter="url(#glow)">SKYMETRON</text>
+        <text x="0" y="92" text-anchor="middle"
+              font-family="Arial, Helvetica, sans-serif"
+              font-size="34" font-weight="700" letter-spacing="6"
+              fill="#ff597f" opacity="0.95" filter="url(#glow)">A.I. UNIT</text>
+      </g>
+    </g>
+  </g>
 </svg>
