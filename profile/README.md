@@ -1,4 +1,6 @@
-![SkyMetron](../logo.svg)
+<p align="center">
+  <img src="../logo.svg" alt="SkyMetron" width="320" />
+</p>
 
 # SkyMetron
 
