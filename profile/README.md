@@ -1,4 +1,4 @@
-![SkyMetron](logo.svg)
+![SkyMetron](../logo.svg)
 
 # SkyMetron
 
