@@ -1,39 +1,63 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" fill="none">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="45%" r="70%">
-      <stop offset="0%" stop-color="#252a30"/>
-      <stop offset="45%" stop-color="#161a20"/>
-      <stop offset="100%" stop-color="#0a0c10"/>
+    <radialGradient id="bg" cx="50%" cy="44%" r="72%">
+      <stop offset="0%" stop-color="#30353b"/>
+      <stop offset="42%" stop-color="#171b20"/>
+      <stop offset="100%" stop-color="#06080b"/>
+    </radialGradient>
+
+    <radialGradient id="vignette" cx="50%" cy="50%" r="60%">
+      <stop offset="68%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.68"/>
     </radialGradient>
 
     <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff4f86" stop-opacity="1"/>
-      <stop offset="35%" stop-color="#ff254f" stop-opacity="0.95"/>
-      <stop offset="68%" stop-color="#a80d28" stop-opacity="0.45"/>
+      <stop offset="0%" stop-color="#ff6a8c" stop-opacity="1"/>
+      <stop offset="28%" stop-color="#ff2658" stop-opacity="0.95"/>
+      <stop offset="62%" stop-color="#af0d2e" stop-opacity="0.45"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
+    <radialGradient id="flare" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="18%" stop-color="#ff7da0" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#ff3b6a" stop-opacity="0"/>
+    </radialGradient>
+
     <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#d0d4d8"/>
-      <stop offset="16%" stop-color="#5e646b"/>
-      <stop offset="40%" stop-color="#1d2228"/>
-      <stop offset="60%" stop-color="#7f8790"/>
-      <stop offset="100%" stop-color="#11151a"/>
+      <stop offset="0%" stop-color="#e2e5e8"/>
+      <stop offset="12%" stop-color="#8b9299"/>
+      <stop offset="32%" stop-color="#30353b"/>
+      <stop offset="55%" stop-color="#12161b"/>
+      <stop offset="74%" stop-color="#676e75"/>
+      <stop offset="100%" stop-color="#0f1318"/>
     </linearGradient>
 
     <linearGradient id="metal2" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#aeb4ba"/>
-      <stop offset="100%" stop-color="#30343a"/>
+      <stop offset="0%" stop-color="#c8cdd2"/>
+      <stop offset="100%" stop-color="#3a4046"/>
+    </linearGradient>
+
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#262b31"/>
+      <stop offset="35%" stop-color="#0f1318"/>
+      <stop offset="70%" stop-color="#454c53"/>
+      <stop offset="100%" stop-color="#090b0f"/>
     </linearGradient>
 
     <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ff6b8f"/>
+      <stop offset="0%" stop-color="#ff7ea0"/>
       <stop offset="50%" stop-color="#ff184f"/>
-      <stop offset="100%" stop-color="#ff6b8f"/>
+      <stop offset="100%" stop-color="#ff7ea0"/>
     </linearGradient>
 
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="8" result="b"/>
+    <linearGradient id="metalShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.75"/>
+    </linearGradient>
+
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
       <feMerge>
         <feMergeNode in="b"/>
         <feMergeNode in="SourceGraphic"/>
@@ -41,7 +65,15 @@
     </filter>
 
     <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2"/>
+      <feGaussianBlur stdDeviation="2.8"/>
+    </filter>
+
+    <filter id="grain" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
+      <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 0.07"/>
+      </feComponentTransfer>
     </filter>
 
     <clipPath id="round">
@@ -52,108 +84,122 @@
   <g clip-path="url(#round)">
     <rect width="1024" height="1024" fill="url(#bg)"/>
 
-    <!-- scratched backdrop -->
-    <g opacity="0.18" stroke="#c5c9cf" stroke-linecap="round">
-      <path d="M78 114C126 98 152 88 198 44" stroke-width="2"/>
-      <path d="M212 82C258 52 328 32 394 16" stroke-width="1.5"/>
-      <path d="M694 40C760 68 818 122 880 176" stroke-width="1.4"/>
-      <path d="M124 202C176 168 210 164 268 130" stroke-width="1.2"/>
-      <path d="M804 194C860 176 916 146 972 112" stroke-width="1.2"/>
-      <path d="M58 834C104 784 138 744 172 688" stroke-width="1.4"/>
-      <path d="M814 824C862 776 900 738 956 676" stroke-width="1.4"/>
+    <!-- subtle industrial scratches -->
+    <g opacity="0.16" stroke="#d8dde2" stroke-linecap="round">
+      <path d="M68 92C136 72 190 48 250 18" stroke-width="1.6"/>
+      <path d="M214 66C294 42 358 24 432 14" stroke-width="1.1"/>
+      <path d="M650 30C724 52 790 98 872 174" stroke-width="1.2"/>
+      <path d="M806 76C864 34 924 8 982 4" stroke-width="1.2"/>
+      <path d="M54 232C112 206 160 172 224 128" stroke-width="1.1"/>
+      <path d="M726 188C800 164 874 124 974 74" stroke-width="1.1"/>
+      <path d="M72 834C126 772 158 720 188 666" stroke-width="1.2"/>
+      <path d="M836 826C894 776 940 732 982 686" stroke-width="1.2"/>
     </g>
 
-    <!-- outer industrial frame -->
-    <g transform="translate(512 512)">
-      <circle r="368" fill="#101318" stroke="#3a4047" stroke-width="22"/>
-      <circle r="350" fill="none" stroke="url(#metal)" stroke-width="14" opacity="0.9"/>
-      <circle r="316" fill="#11151a" stroke="#555b62" stroke-width="10"/>
-      <circle r="278" fill="#0e1116" stroke="#2a2f36" stroke-width="8"/>
+    <g opacity="0.22" filter="url(#grain)">
+      <rect width="1024" height="1024" fill="#ffffff"/>
+    </g>
 
-      <!-- top plates -->
+    <!-- main device -->
+    <g transform="translate(512 508)">
+      <circle r="382" fill="#0e1115" stroke="#272d33" stroke-width="18"/>
+      <circle r="366" fill="none" stroke="url(#metal)" stroke-width="12" opacity="0.92"/>
+      <circle r="340" fill="#11151a" stroke="#525960" stroke-width="10"/>
+      <circle r="306" fill="#0d1014" stroke="#262b31" stroke-width="8"/>
+
+      <!-- outer armor segments -->
       <g>
-        <path d="M-210 -334h420l-24 78h-372z" fill="url(#metal2)" stroke="#0b0d10" stroke-width="8"/>
-        <path d="M-160 -333h320" stroke="#dfe5eb" stroke-width="6" stroke-linecap="round" opacity="0.65"/>
-        <circle cx="-126" cy="-272" r="12" fill="#20242a" stroke="#70757d" stroke-width="5"/>
-        <circle cx="126" cy="-272" r="12" fill="#20242a" stroke="#70757d" stroke-width="5"/>
-        <path d="M-14 -255l14 -24 14 24z" fill="#ff4f86" filter="url(#glow)"/>
+        <path d="M-238 -334h476l-32 94h-412z" fill="url(#metal2)" stroke="#0a0c0f" stroke-width="8"/>
+        <path d="M-218 -324h436" stroke="#fafcff" stroke-width="5" stroke-linecap="round" opacity="0.45"/>
+        <circle cx="-138" cy="-274" r="12" fill="#1c2025" stroke="#70777f" stroke-width="5"/>
+        <circle cx="138" cy="-274" r="12" fill="#1c2025" stroke="#70777f" stroke-width="5"/>
+        <path d="M-18 -260l18 -28 18 28-18 12z" fill="#ff5b88" filter="url(#glow)"/>
       </g>
 
-      <!-- red light rails -->
       <g filter="url(#glow)">
-        <path d="M-288 -120A300 300 0 0 1 -230 -252" stroke="url(#neon)" stroke-width="14" stroke-linecap="round"/>
-        <path d="M288 -120A300 300 0 0 0 230 -252" stroke="url(#neon)" stroke-width="14" stroke-linecap="round"/>
-        <path d="M-320 54A320 320 0 0 0 -320 188" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
-        <path d="M320 54A320 320 0 0 1 320 188" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+        <path d="M-304 -128A324 324 0 0 1 -248 -262" stroke="url(#neon)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M304 -128A324 324 0 0 0 248 -262" stroke="url(#neon)" stroke-width="14" stroke-linecap="round"/>
+        <path d="M-344 62A344 344 0 0 0 -344 204" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+        <path d="M344 62A344 344 0 0 1 344 204" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
       </g>
 
-      <!-- side modules -->
-      <g opacity="0.95">
-        <g transform="translate(-286 16)">
-          <rect x="-8" y="-56" width="16" height="112" rx="8" fill="#262b31" stroke="#737a82" stroke-width="3"/>
-          <rect x="-2" y="-42" width="4" height="84" fill="#ff2b5c" filter="url(#glow)"/>
+      <!-- side mechanical pods -->
+      <g opacity="0.96">
+        <g transform="translate(-294 18)">
+          <rect x="-12" y="-66" width="24" height="132" rx="10" fill="#252a30" stroke="#6f767d" stroke-width="3"/>
+          <rect x="-3" y="-50" width="6" height="100" fill="#ff335f" filter="url(#glow)"/>
+          <circle cx="0" cy="0" r="24" fill="#101419" stroke="#5b6269" stroke-width="4"/>
         </g>
-        <g transform="translate(286 16)">
-          <rect x="-8" y="-56" width="16" height="112" rx="8" fill="#262b31" stroke="#737a82" stroke-width="3"/>
-          <rect x="-2" y="-42" width="4" height="84" fill="#ff2b5c" filter="url(#glow)"/>
+        <g transform="translate(294 18)">
+          <rect x="-12" y="-66" width="24" height="132" rx="10" fill="#252a30" stroke="#6f767d" stroke-width="3"/>
+          <rect x="-3" y="-50" width="6" height="100" fill="#ff335f" filter="url(#glow)"/>
+          <circle cx="0" cy="0" r="24" fill="#101419" stroke="#5b6269" stroke-width="4"/>
         </g>
       </g>
 
-      <!-- inner mech ring -->
-      <circle r="220" fill="#0c0f13" stroke="#3f454c" stroke-width="10"/>
-      <circle r="208" fill="#090c10" stroke="#5b626b" stroke-width="4"/>
+      <!-- inner housing -->
+      <circle r="236" fill="#090c10" stroke="#444b52" stroke-width="10"/>
+      <circle r="224" fill="#080b0f" stroke="#6a727a" stroke-width="4" opacity="0.95"/>
 
-      <g fill="#20252b" stroke="#6a7178" stroke-width="4">
-        <path d="M0 -228l18 52h-36z"/>
-        <path d="M0 228l18 -52h-36z"/>
-        <path d="M228 0l-52 18v-36z"/>
-        <path d="M-228 0l52 18v-36z"/>
+      <g fill="#20262c" stroke="#6c737b" stroke-width="4" opacity="0.9">
+        <path d="M0 -248l18 54h-36z"/>
+        <path d="M0 248l18 -54h-36z"/>
+        <path d="M248 0l-54 18v-36z"/>
+        <path d="M-248 0l54 18v-36z"/>
       </g>
 
       <!-- aperture blades -->
       <g>
-        <g fill="#171b20" stroke="#5e646b" stroke-width="5">
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(0)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(36)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(72)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(108)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(144)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(180)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(216)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(252)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(288)"/>
-          <path d="M-26 -4C-16 -102 24 -154 96 -178L20 -64Z" transform="rotate(324)"/>
+        <g fill="url(#blade)" stroke="#5a6067" stroke-width="4.5">
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(0)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(36)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(72)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(108)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(144)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(180)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(216)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(252)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(288)"/>
+          <path d="M-34 -6C-18 -98 30 -156 110 -188L28 -70Z" transform="rotate(324)"/>
         </g>
 
         <g filter="url(#glow)">
-          <path d="M-4 -170C-2 -198 8 -220 28 -236" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
-          <path d="M128 -108C160 -92 186 -64 202 -28" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
-          <path d="M126 108C156 92 182 64 200 28" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
-          <path d="M-124 108C-154 92 -182 62 -200 26" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
-          <path d="M-126 -108C-156 -92 -182 -62 -202 -28" stroke="url(#neon)" stroke-width="12" stroke-linecap="round"/>
+          <path d="M-8 -176C-4 -202 8 -226 32 -242" stroke="url(#neon)" stroke-width="11" stroke-linecap="round"/>
+          <path d="M130 -112C162 -92 186 -66 206 -28" stroke="url(#neon)" stroke-width="11" stroke-linecap="round"/>
+          <path d="M128 110C160 92 184 66 204 30" stroke="url(#neon)" stroke-width="11" stroke-linecap="round"/>
+          <path d="M-128 110C-160 92 -184 64 -204 30" stroke="url(#neon)" stroke-width="11" stroke-linecap="round"/>
+          <path d="M-130 -112C-160 -92 -186 -66 -206 -28" stroke="url(#neon)" stroke-width="11" stroke-linecap="round"/>
         </g>
       </g>
 
-      <!-- center iris -->
-      <circle r="80" fill="#050608" stroke="#ff4f86" stroke-width="8" filter="url(#glow)"/>
-      <circle r="54" fill="url(#coreGlow)" filter="url(#glow)"/>
-      <circle r="32" fill="#a90b26" opacity="0.35"/>
-      <circle r="20" fill="#010101"/>
+      <!-- center iris / eye -->
+      <circle r="88" fill="#040506" stroke="#ff6a8c" stroke-width="8" filter="url(#glow)"/>
+      <circle r="78" fill="url(#coreGlow)" filter="url(#soft)"/>
+      <circle r="60" fill="#0a0004" opacity="0.7"/>
+      <circle r="40" fill="#a60d29" opacity="0.38"/>
+      <circle r="22" fill="#000000"/>
+      <ellipse cx="18" cy="-18" rx="16" ry="12" fill="#ffffff" opacity="0.18" filter="url(#soft)"/>
 
-      <!-- lower label plate -->
-      <g transform="translate(0 268)">
-        <path d="M-240 -28h480l-22 96h-436z" fill="#0d1014" stroke="#414850" stroke-width="8"/>
-        <path d="M-200 -2h400" stroke="#70777f" stroke-width="4" opacity="0.3"/>
-        <path d="M-188 18h376" stroke="#70777f" stroke-width="2" opacity="0.15"/>
-        <text x="0" y="42" text-anchor="middle"
-              font-family="Arial, Helvetica, sans-serif"
-              font-size="58" font-weight="800" letter-spacing="2"
-              fill="#ff597f" filter="url(#glow)">SKYMETRON</text>
-        <text x="0" y="92" text-anchor="middle"
-              font-family="Arial, Helvetica, sans-serif"
-              font-size="34" font-weight="700" letter-spacing="6"
-              fill="#ff597f" opacity="0.95" filter="url(#glow)">A.I. UNIT</text>
+      <!-- center flare -->
+      <circle r="124" fill="url(#flare)" opacity="0.55" filter="url(#glow)"/>
+
+      <!-- small vent rings -->
+      <g opacity="0.95">
+        <path d="M-182 -76h38" stroke="#60676f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M144 -76h38" stroke="#60676f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M-184 80h42" stroke="#60676f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M142 80h42" stroke="#60676f" stroke-width="6" stroke-linecap="round"/>
       </g>
+
+      <!-- top notch -->
+      <path d="M-34 -302h68l-8 22h-52z" fill="#13171b" stroke="#70767d" stroke-width="4"/>
+      <path d="M-18 -294h36" stroke="#ff5f87" stroke-width="4" stroke-linecap="round" filter="url(#glow)"/>
+
+      <!-- lower bezel shadow -->
+      <ellipse cx="0" cy="274" rx="282" ry="58" fill="url(#metalShadow)" opacity="0.7"/>
     </g>
+
+    <!-- edge vignette -->
+    <rect width="1024" height="1024" fill="url(#vignette)"/>
   </g>
 </svg>
